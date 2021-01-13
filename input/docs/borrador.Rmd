@@ -56,17 +56,21 @@ En el siguiente documento es un borrador para el trabajo con la base de datos lo
   + Sigmund and Ferstl (2019) Panel Vector Autoregression in R with the package panelvar
   + Agregar uno temático como el de Fitzenberger et. al (1999) Wer ist noch Mitglied in Gewerkschaften? Eine Panelanalyse für Westdeutschland
   
-# Hipótesis
+# Artículos
 
 ## Acting collectively againts injustice
 
-**Objetivo**: analizar las percepciones de injusticia en eltrato y la legitimidad de las autoridades con el fin de identificar un mecanismo que aienta las acciones por fuera de las normas del sistema y que tienden a involucrar accion violenta.
+### Objetivo
 
-**Hipótesis**: Las personas se sienten más dispuestas a movilizarse cuando perciben que una situación es injusta (percepción injusticia), se sienten capaces de generar un cambio (percepción de eficacia) y se identifican con otras personas de un mismo grupo identidad social). Se prueba en  acciones colectivas normativas y acciones colectivas no-normativas
+Analizar las percepciones de injusticia en eltrato y la legitimidad de las autoridades con el fin de identificar un mecanismo que aienta las acciones por fuera de las normas del sistema y que tienden a involucrar accion violenta.
 
-  - **Específicas**: Se basan en injusticia en el trato que las personas perciben respecto a las autoridades
+### Hipótesis
 
-**A. Directas**
+**General**: Las personas se sienten más dispuestas a movilizarse cuando perciben que una situación es injusta (percepción injusticia), se sienten capaces de generar un cambio (percepción de eficacia) y se identifican con otras personas de un mismo grupo identidad social). Se prueba en  acciones colectivas normativas y acciones colectivas no-normativas
+
+**Específicas**: Se basan en injusticia en el trato que las personas perciben respecto a las autoridades
+
+#### A. Directas
 
 - $H_1$. Una mayor percepción de injusticia en el trato de las autoridades, menor será la percepción de legitimidad de de autoridades
 - $H_2a$. Una mayor legitimación de las autoridades, por su parte, se debiera asociar a una menor justificación de la acción colectiva no-normativa
@@ -75,21 +79,21 @@ En el siguiente documento es un borrador para el trabajo con la base de datos lo
 - $H_3a$. La percepción de injusticia en el trato tendrá efectos directos positivos en la justificación de la acción colectiva no-normativa.
 - $H_3b$. y normativa (one side?)
 
-**B. Indirectas**
+#### B. Indirectas
 
 - $H_4a$. A mayor percepción de injusticia en el trato, menor legitimación en autoridades y eso aumenta acción colectiva no normativa. (med positivo)
 
 - $H_4b$.  Y una menor en normativa. (med negativo)
 
-**Metodología**
+### Metodología
 
 - Base PNUD (2015), n = 1.805 casos
 
 - SEM (latentes son legitimidad de autoridades, justificación acción colectiva normativa y no-normativa)
 
-**Mediciones**
+### Mediciones
 
-1. **Justificación de la acción colectiva normativa**
+1. **Justificación de la acción colectiva contenciosa** (normativa)
 
   + *“Organizar plebiscitos para que la mayoría decida”*
 
@@ -97,7 +101,7 @@ En el siguiente documento es un borrador para el trabajo con la base de datos lo
 
   + Escala de respuestas desde 1 = “es la peor forma de tomar decisiones” hasta 10 = “es la mejor forma de tomar decisiones”.
 
-2.  **Justificación de la acción colectiva no-normativa***
+2.  **Justificación de la acción colectiva transgesora** (no-normativa)
 
   + *“Que las personas participen en marchas o manifestaciones públicas no autorizadas”*
 
@@ -137,14 +141,56 @@ En el siguiente documento es un borrador para el trabajo con la base de datos lo
   
   + Sociodemográficas.
   
-**Resultados**
+### Resultados
 
 ![](../../input/img/Figura1.png)
 
 
 # Datos ELSOC
 
-**Tabla 1.** Libro de códigos para análisis de datos con ELSOC
+## Disponibilidad de mediciones por ola
+
+En la **Tabla 1** y **Tabla 2** presentamos la disponibilidad por ola de cada una de las mediciones. En Anexos se puede encontrar el [libro general de códigos](#tab3) y [cuestionario](#ques)  
+
+El color rojo indica que esta no está disponible en esa ola y verde que si está disponible en aquella ola.
+
+**Tabla 1.** Variables dependientes
+```{r, echo=FALSE}
+codebook <- as.data.frame(codebook)
+
+#Muestra1_W01 -->ola 1
+#Muestra1_W02 -->ola2
+#Muestra1_W03 -->ola3
+#Muestra1_W04 -->ola4
+  
+codebook %>% filter(Tipo == "Dependiente") %>%
+  select(c(2,5:7, "Ola 1" ="Muestra1_W01","Ola 2" ="Muestra1_W02","Ola 3" ="Muestra1_W03","Ola 4" ="Muestra1_W04" )) %>%
+  mutate_at(vars(4:7),  ~ if_else(!is.na(.), " ", .))  %>% 
+    datatable(rownames = FALSE, options = list(autoWidth = TRUE,language = list(url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json'),
+  pageLength = 10)) %>%
+    formatStyle(c(4:7), backgroundColor = styleEqual(NA, "red")) %>%
+  formatStyle(c(4:7), backgroundColor = styleEqual(" ", "green"))
+```
+
+**Tabla 2.** Variables independientes
+```{r, echo=FALSE}
+codebook %>% filter(Tipo != "Dependiente") %>%
+  select(c(2,5:7, "Ola 1" ="Muestra1_W01","Ola 2" ="Muestra1_W02","Ola 3" ="Muestra1_W03","Ola 4" ="Muestra1_W04" )) %>%
+  mutate_at(vars(4:7),  ~ if_else(!is.na(.), " ", .))  %>% 
+    datatable(rownames = FALSE,options = list(language = list(url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json'),
+  pageLength = 100)) %>%
+    formatStyle(c(4:7), backgroundColor = styleEqual(NA, "red")) %>%
+  formatStyle(c(4:7), backgroundColor = styleEqual(" ", "green"))
+```
+
+
+
+
+# Anexos
+
+## Libro de códigos {#tab3}
+
+**Tabla 3.** Libro de códigos para análisis de datos con ELSOC
 ```{r, echo=FALSE}
 codebook <- as.data.frame(codebook)
 codebook <- codebook[,-3]
@@ -154,6 +200,7 @@ DT::datatable(codebook, options = list(language = list(url = '//cdn.datatables.n
   pageLength = 5))
 ```
 
+## Cuestionario {#ques}
 
 1. **Preguntas permanentes** 
 
@@ -203,5 +250,4 @@ Las variables que podrían aproximarse a **Legitimidad autoridades**,  **Justici
     a.   En el trabajo
     b.   Por Carabineros
     c.  Por personas de clase alta
-
 
