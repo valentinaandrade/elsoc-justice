@@ -154,7 +154,7 @@ En la **Tabla 1** y **Tabla 2** presentamos la disponibilidad por ola de cada un
 
 El color rojo indica que esta no está disponible en esa ola y verde que si está disponible en aquella ola.
 
-**Tabla 1.** Variables dependientes
+**Tabla 1.** Disponibilidad de variables dependientes según año de aplicación de ELSOC
 ```{r, echo=FALSE}
 codebook <- as.data.frame(codebook)
 
@@ -164,7 +164,7 @@ codebook <- as.data.frame(codebook)
 #Muestra1_W04 -->ola4
   
 codebook %>% filter(Tipo == "Dependiente") %>%
-  select(c(2,5:7, "Ola 1" ="Muestra1_W01","Ola 2" ="Muestra1_W02","Ola 3" ="Muestra1_W03","Ola 4" ="Muestra1_W04" )) %>%
+  select(c(2,5:7, "2016" ="Muestra1_W01","2017" ="Muestra1_W02","2018" ="Muestra1_W03","2019" ="Muestra1_W04" )) %>%
   mutate_at(vars(4:7),  ~ if_else(!is.na(.), " ", .))  %>% 
     datatable(rownames = FALSE, options = list(autoWidth = TRUE,language = list(url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json'),
   pageLength = 10)) %>%
@@ -172,7 +172,7 @@ codebook %>% filter(Tipo == "Dependiente") %>%
   formatStyle(c(4:7), backgroundColor = styleEqual(" ", "green"))
 ```
 
-**Tabla 2.** Variables independientes
+**Tabla 2.** Disponibilidad de variables independientes según año de aplicación de ELSOC
 ```{r, echo=FALSE}
 codebook %>% filter(Tipo != "Dependiente") %>%
   select(c(2,5:7, "Ola 1" ="Muestra1_W01","Ola 2" ="Muestra1_W02","Ola 3" ="Muestra1_W03","Ola 4" ="Muestra1_W04" )) %>%
