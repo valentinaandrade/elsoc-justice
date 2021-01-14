@@ -172,6 +172,9 @@ codebook %>% filter(Tipo == "Dependiente") %>%
   formatStyle(c(4:7), backgroundColor = styleEqual(" ", "green"))
 ```
 
+
+</br>
+
 **Tabla 2.** Disponibilidad de variables independientes según año de aplicación de ELSOC
 ```{r, echo=FALSE}
 codebook %>% filter(Tipo != "Dependiente") %>%
@@ -204,14 +207,14 @@ DT::datatable(codebook, options = list(language = list(url = '//cdn.datatables.n
 
 1. **Preguntas permanentes** 
 
-- **Acciones normativas**
+- **Acciones contenciosas** (normativas)
 
   + Participación ciudadana: "Durante los últimos 12 meses, con cuánta frecuencia usted ha ..."
   
     a.  Firmado una carta o petición apoyando una causa
     b.  Usado las redes sociales para expresar su opinión en temas públicos
     
-- **Acciones no- normativas**
+- **Acciones transgresoras** (no-normativas)
 
   + Participación ciudadana: "Durante los últimos 12 meses, con cuánta frecuencia usted ha ..."
   
@@ -237,6 +240,13 @@ DT::datatable(codebook, options = list(language = list(url = '//cdn.datatables.n
 - **Pertenencia a causa**
 
   + Movimientos sociales: Pensando en la lista de movimientos sociales que a continuación le mostraré, por favor indique ¿cuál es el que usted más valora?
+  
+- **Justicia Distributiva**
+
+  + ¿Cuánto cree que sería una remuneración justa para usted? (Considere el ingreso líquido, es decir, después de descuentos de impuestos, salud, previsión u otros)
+  
+  + ¿Qué tan insatisfecho o satisfecho está usted con su ingreso hoy en día? En una escala de 1 a 5, donde 1 es totalmente insatisfecho, y 5 es totalmente satisfecho.
+
 
 
 2. **Preguntas intercaladas**
